@@ -12,6 +12,16 @@ class Film
   end
 
   def save
+    sql = "INSERT INTO films 
+    (title,price) 
+    VALUES 
+    ('#{@title}',
+    '#{@price}',
+    RETURNING *"
+    firstresult = SqlRunner.run(sql)
+    resultobject = firstresult.map { |film| Film.new(film)}
+    idasstring = resultobject[0].id
+    @id = idasstring.to_i
   end
 
   def display
@@ -27,6 +37,8 @@ class Film
   end
 
   def self.delete_all
+    sql = "DELETE FROM films;"
+    SqlRunner.run(sql)
   end
 
 

@@ -11,6 +11,16 @@ class Customer
   end
 
   def save
+    sql = "INSERT INTO customers
+    (name,funds)
+    VALUES
+    ('#{@name}',
+    '#{@funds}'
+    RETURNING *;"
+    firstresult = SqlRunner.run(sql)
+    resultobject = firstresult.map { |customer| Customer.new(customer)}
+    idasstring = resultobject[0].id
+    @id = idasstring.to_i
   end
 
   def display
@@ -26,6 +36,8 @@ class Customer
   end
 
   def self.delete_all
+    sql = "DELETE FROM customers;"
+    SqlRunner.run(sql)
   end
 
 end

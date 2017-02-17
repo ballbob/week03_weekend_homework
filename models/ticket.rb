@@ -12,8 +12,17 @@ class Ticket
   end
 
   def save
-    sql = ""
-    SqlRunner.run(sql)
+    sql = "INSERT INTO 
+    tickets (film_id,customer_id,time) 
+    VALUES 
+    ('#{@film_id}', 
+    '#{@customer_id}', 
+    '#{@time}') 
+    RETURNING *;"
+    firstresult = SqlRunner.run(sql)
+    resultobject = firstresult.map {|ticket| Ticket.new(ticket)}
+    idasstring = resultobject[0].id
+    @id = idasstring.to_i
   end
 
   def display
@@ -31,6 +40,8 @@ class Ticket
   end
 
   def self.delete_all
+    sql = "DELETE FROM tickets;"
+    SqlRunner.run(sql)
   end
 
 end
