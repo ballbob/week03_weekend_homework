@@ -1,4 +1,4 @@
-require('../db/sql_runner.rb')
+require_relative('../db/sql_runner.rb')
 
 class Customer
   attr_reader :name, :id
@@ -15,7 +15,7 @@ class Customer
     (name,funds)
     VALUES
     ('#{@name}',
-    '#{@funds}'
+    '#{@funds}')
     RETURNING *;"
     firstresult = SqlRunner.run(sql)
     resultobject = firstresult.map { |customer| Customer.new(customer)}

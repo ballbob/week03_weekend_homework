@@ -26,8 +26,10 @@ class Ticket
   end
 
   def display
-    sql = "SELECT * FROM tickets WHERE id = #{@id}"
+    sql = "SELECT * FROM tickets WHERE id = #{@id};"
     result = SqlRunner.run(sql)
+    resultobject = result.map { |ticket| Ticket.new(ticket)}
+    return resultobject
   end
 
   def self.display_all

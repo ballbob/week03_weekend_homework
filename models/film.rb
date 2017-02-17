@@ -1,4 +1,4 @@
-require('../db/sql_runner.rb')
+require_relative('../db/sql_runner.rb')
 
 class Film
 
@@ -16,7 +16,7 @@ class Film
     (title,price) 
     VALUES 
     ('#{@title}',
-    '#{@price}',
+    '#{@price}')
     RETURNING *"
     firstresult = SqlRunner.run(sql)
     resultobject = firstresult.map { |film| Film.new(film)}
