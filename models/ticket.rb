@@ -11,4 +11,26 @@ class Ticket
     @time = options['time']
   end
 
+  def save
+    sql = ""
+    SqlRunner.run(sql)
+  end
+
+  def display
+    sql = "SELECT * FROM tickets WHERE id = #{@id}"
+    result = SqlRunner.run(sql)
+  end
+
+  def self.display_all
+  end
+
+  def update
+  end
+
+  def delete
+  end
+
+  def self.delete_all
+  end
+
 end
