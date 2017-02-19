@@ -38,10 +38,14 @@ class Film
     return resultobject
   end
 
-  def update
+  def update_price(newprice)
+    sql = "UPDATE films SET price = #{newprice} WHERE id = #{@id}"
+    SqlRunner.run(sql)
   end
 
   def delete
+    sql = "DELETE FROM films WHERE id = #{@id}"
+    SqlRunner.run(sql)
   end
 
   def self.delete_all
