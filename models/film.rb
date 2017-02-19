@@ -25,9 +25,17 @@ class Film
   end
 
   def display
+    sql = "SELECT * FROM films where id = #{@id}"
+    firstresult = SqlRunner.run(sql)
+    resultobject = firstresult.map { |film| Film.new(film)}
+    return resultobject
   end
 
   def self.display_all
+    sql = "SELECT * FROM films"
+    firstresult = SqlRunner.run(sql)
+    resultobject = firstresult.map { |film| Film.new(film)}
+    return resultobject
   end
 
   def update
