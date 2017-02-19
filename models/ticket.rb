@@ -33,6 +33,10 @@ class Ticket
   end
 
   def self.display_all
+    sql = "SELECT * FROM tickets"
+    result = SqlRunner.run(sql)
+    resultobject = result.map { |ticket| Ticket.new(ticket)}
+    return resultobject
   end
 
   def update
