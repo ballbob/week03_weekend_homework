@@ -61,5 +61,11 @@ class Customer
     return resultobjects
   end
 
+  def buy_ticket(film,showing)
+    sql = "INSERT INTO tickets (customer_id,film_id,time) VALUES (#{@id}, #{film.id}, '#{showing}')"
+    SqlRunner.run(sql)
+  end
+
+
 
 end
