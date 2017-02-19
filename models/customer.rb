@@ -37,13 +37,14 @@ class Customer
     return resultobjects
   end
 
-  def update
-    sql = "UPDATE * FROM customers WHERE id = #{@id}"
+  def update_funds(newfunds)
+    sql = "UPDATE customers SET funds = #{newfunds} WHERE id = #{@id}"
     SqlRunner.run(sql)
   end
 
   def delete
     sql = "DELETE FROM customers WHERE id = #{@id}"
+    SqlRunner.run(sql)
   end
 
   def self.delete_all
