@@ -24,15 +24,26 @@ class Customer
   end
 
   def display
+    sql = "SELECT * FROM customers WHERE id = #{@id}"
+    result = SqlRunner.run(sql)
+    resultobject = result.map { |customer| Customer.new(customer)}
+    return resultobject
   end
 
   def self.display_all
+    sql = "SELECT * FROM customers"
+    result = SqlRunner.run(sql)
+    resultobjects = result.map { |customer| Customer.new(customer)}
+    return resultobjects
   end
 
   def update
+    sql = "UPDATE * FROM customers WHERE id = #{@id}"
+    SqlRunner.run(sql)
   end
 
   def delete
+    sql = "DELETE FROM customers WHERE id = #{@id}"
   end
 
   def self.delete_all
