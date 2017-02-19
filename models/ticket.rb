@@ -39,10 +39,14 @@ class Ticket
     return resultobject
   end
 
-  def update
+  def update_customer(newcustomer)
+    sql = "UPDATE tickets SET customer_id = #{newcustomer.id} WHERE id = #{@id}"
+    SqlRunner.run(sql)
   end
 
   def delete
+    sql = "DELETE FROM tickets WHERE id = #{@id}"
+    SqlRunner.run(sql)
   end
 
   def self.delete_all
